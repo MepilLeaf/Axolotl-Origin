@@ -1,0 +1,17 @@
+{
+    "powers": [
+        "axolotl:axolotl's_blessing",
+        "axolotl:amphibian",
+        "origins:water_breathing",
+        "axolotl:water_vision",
+        "origins:aqua_affinity",
+        "axolotl:faster_swim",
+        "origins:like_water",
+        "axolotl:small"
+    ],
+    "icon": "minecraft:pink_dye",
+    "order": 1,
+    "impact": 3,
+    "name": "Axolotl",
+    "description": "From the oceans and rivers, you naturally reside in water and can help other's in combat."
+}
