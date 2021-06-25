@@ -10,7 +10,9 @@
         "axolotl:small",
         "origins:aquatic",
         "origins:conduit_power_on_land",
-        "origins:air_from_potions"
+        "origins:air_from_potions",
+        "axolotl:regenerative_properties",
+        "axolotl:scurry"
     ],
     "icon": "minecraft:pink_dye",
     "order": 1,
