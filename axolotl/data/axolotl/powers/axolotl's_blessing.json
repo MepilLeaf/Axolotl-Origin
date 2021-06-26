@@ -17,7 +17,7 @@
             "actions": [
                 {
                     "type": "origins:execute_command",
-                    "command": "effect give @a[distance=0.01..20] minecraft:regeneration 3 0"
+                    "command": "effect give @a[distance=0.01..20] minecraft:regeneration 5 0"
                 },
                 {
                     "type": "origins:play_sound",
