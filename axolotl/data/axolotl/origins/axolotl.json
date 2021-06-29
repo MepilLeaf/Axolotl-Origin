@@ -1,8 +1,9 @@
 {
     "powers": [
-        "axolotl:axolotl_blessing",
-        "axolotl:amphibian",
         "origins:water_breathing",
+        "axolotl:axolotl_blessing",
+        "axolotl:play_dead",
+        "axolotl:amphibian",
         "axolotl:water_vision",
         "origins:aqua_affinity",
         "axolotl:faster_swim",
@@ -10,9 +11,7 @@
         "axolotl:small",
         "origins:aquatic",
         "origins:conduit_power_on_land",
-        "origins:air_from_potions",
-        "axolotl:regenerative_properties",
-        "axolotl:scurry"
+        "origins:air_from_potions"
     ],
     "icon": "minecraft:pink_dye",
     "order": 1,

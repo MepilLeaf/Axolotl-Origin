@@ -1,0 +1,243 @@
+{
+    "name": "Play Dead",
+    "description": "When you are low health you can play dead for a few seconds, while you are playing dead no mobs will attack you and you will regain health, but you will be unable to move.",
+    "type": "origins:multiple",
+    "cooldown": {
+        "type": "origins:resource",
+        "min": 0,
+        "max": 33,
+        "hud_render": {
+            "should_render": true,
+            "sprite_location": "origins:textures/gui/community/huang/resource_bar_01.png",
+            "bar_index": 4,
+            "condition": {
+                "type": "origins:resource",
+                "resource": "axolotl:play_dead_cooldown",
+                "comparison": "!=",
+                "compare_to": 0
+            }
+        },
+        "start_value": 0
+    },
+    "is_active": {
+        "type": "origins:resource",
+        "min": 0,
+        "max": 1,
+        "hud_render": {
+            "should_render": false
+        },
+        "start_value": 0
+    },
+    "is_active_true": {
+        "type": "origins:action_over_time",
+        "entity_action": {
+            "type": "origins:change_resource",
+            "resource": "axolotl:play_dead_is_active",
+            "change": 1
+        },
+        "interval": 1,
+        "condition": {
+            "type": "origins:resource",
+            "resource": "axolotl:play_dead_cooldown",
+            "comparison": ">",
+            "compare_to": 30
+        }
+    },
+    "is_active_false": {
+        "type": "origins:action_over_time",
+        "entity_action": {
+            "type": "origins:change_resource",
+            "resource": "axolotl:play_dead_is_active",
+            "change": -1
+        },
+        "interval": 1,
+        "condition": {
+            "type": "origins:resource",
+            "resource": "axolotl:play_dead_cooldown",
+            "comparison": "<=",
+            "compare_to": 28
+        }
+    },
+    "time_manager": {
+        "type": "origins:action_over_time",
+        "entity_action": {
+            "type": "origins:change_resource",
+            "resource": "axolotl:play_dead_cooldown",
+            "change": -1
+        },
+        "interval": 20
+    },
+    "create_team": {
+        "type": "origins:action_over_time",
+        "entity_action": {
+            "type": "origins:execute_command",
+            "command": "team add passive",
+            "permission_level": 4
+        },
+        "interval": 1,
+        "condition": {
+            "type": "origins:resource",
+            "resource": "axolotl:play_dead_cooldown",
+            "comparison": "==",
+            "compare_to": 0
+        }
+    },
+    "add_to_team": {
+        "type": "origins:active_self",
+        "entity_action": {
+            "type": "origins:and",
+            "actions": [
+                {
+                    "type": "origins:execute_command",
+                    "command": "team join passive @e",
+                    "permission_level": 4
+                },
+                {
+                    "type": "origins:change_resource",
+                    "resource": "axolotl:play_dead_cooldown",
+                    "change": 35
+                },
+                {
+                    "type": "origins:execute_command",
+                    "command": "effect give @s minecraft:regeneration 5 1",
+                    "permission_level": 4
+                },
+                {
+                    "type": "origins:play_sound",
+                    "sound": "minecraft:entity.axolotl.death"
+                }
+            ]
+        },
+        "cooldown": 0,
+        "hud_render": {
+            "should_render": false
+        },
+        "key": {
+            "key": "key.origins.primary_active"
+        },
+        "condition": {
+            "type": "origins:and",
+            "conditions": [
+                {
+                    "type": "origins:health",
+                    "comparison": "<=",
+                    "compare_to": 6
+                },
+                {
+                    "type": "origins:resource",
+                    "resource": "axolotl:play_dead_cooldown",
+                    "comparison": "==",
+                    "compare_to": 0
+                }
+            ]
+        }
+    },
+    "remove_from_team": {
+        "type": "origins:action_over_time",
+        "entity_action": {
+            "type": "origins:execute_command",
+            "command": "team remove passive",
+            "permission_level": 4
+        },
+        "interval": 1,
+        "condition": {
+            "type": "origins:resource",
+            "resource": "axolotl:play_dead_cooldown",
+            "comparison": "==",
+            "compare_to": 24
+        }
+    },
+    "no_movement_when_land": {
+        "type": "origins:action_on_land",
+        "entity_action": {
+            "type": "origins:execute_command",
+            "command": "scale set pehkui:motion 0.00001 @s",
+            "permission_level": 4
+        },
+        "condition": {
+            "type": "origins:resource",
+            "resource": "axolotl:play_dead_is_active",
+            "comparison": "==",
+            "compare_to": 1
+        }
+    },
+    "no_movement_when_on_ground": {
+        "type": "origins:action_over_time",
+        "entity_action": {
+            "type": "origins:execute_command",
+            "command": "scale set pehkui:motion 0.00001 @s",
+            "permission_level": 4
+        },
+        "interval": 1,
+        "condition": {
+            "type": "origins:and",
+            "conditions": [
+                {
+                    "type": "origins:block_collision",
+                    "offset_x": 0,
+                    "offset_y": -0.1,
+                    "offset_z": 0
+                },
+                {
+                    "type": "origins:resource",
+                    "resource": "axolotl:play_dead_is_active",
+                    "comparison": "==",
+                    "compare_to": 1
+                }
+            ]
+        }
+    },
+    "no_movement_when_submerged": {
+        "type": "origins:action_over_time",
+        "entity_action": {
+            "type": "origins:execute_command",
+            "command": "scale set pehkui:motion 0.00001 @s",
+            "permission_level": 4
+        },
+        "interval": 1,
+        "condition": {
+            "type": "origins:and",
+            "conditions": [
+                {
+                    "type": "origins:submerged_in",
+                    "fluid": "minecraft:water"
+                },
+                {
+                    "type": "origins:resource",
+                    "resource": "axolotl:play_dead_is_active",
+                    "comparison": "==",
+                    "compare_to": 1
+                }
+            ]
+        }
+    },
+    "reset_no_movment": {
+        "type": "origins:action_over_time",
+        "entity_action": {
+            "type": "origins:execute_command",
+            "command": "scale set pehkui:motion 1 @s",
+            "permission_level": 4
+        },
+        "interval": 1,
+        "condition": {
+            "type": "origins:resource",
+            "resource": "axolotl:play_dead_is_active",
+            "comparison": "==",
+            "compare_to": 0
+        }
+    },
+    "no_damage": {
+        "type": "origins:modify_damage_dealt",
+        "condition": {
+            "type": "origins:resource",
+            "resource": "axolotl:play_dead_is_active",
+            "comparison": "==",
+            "compare_to": 1
+        },
+        "modifier": {
+            "name": "Extra damage when submerged",
+            "operation": "multiply_total",
+            "value": -1
+        }
+    }
+}

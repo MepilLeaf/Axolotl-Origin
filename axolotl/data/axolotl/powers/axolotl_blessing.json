@@ -6,7 +6,7 @@
         "type": "origins:toggle",
         "active_by_default": false,
         "key": {
-            "key": "key.origins.primary_active",
+            "key": "key.origins.secondary_active",
             "continuous": false
         }
     },
@@ -21,7 +21,7 @@
                 },
                 {
                     "type": "origins:play_sound",
-                    "sound": "minecraft:block.large_amethyst_bud.break"
+                    "sound": "minecraft:block.amethyst_block.break"
                 }
             ]
         },
@@ -40,8 +40,8 @@
         "max": 1,
         "hud_render": {
             "should_render": true,
-            "sprite_location": "origins:textures/gui/community/huang/resource_bar_01.png",
-            "bar_index": 4,
+            "sprite_location": "origins:textures/gui/community/spiderkolo/resource_bar_02.png",
+            "bar_index": 9,
             "condition": {
                 "type": "origins:power_active",
                 "power": "axolotl:axolotl_blessing_support"
