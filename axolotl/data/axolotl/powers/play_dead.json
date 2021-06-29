@@ -239,5 +239,19 @@
             "operation": "multiply_total",
             "value": -1
         }
+    },
+    "falldmg": {
+        "type": "origins:action_over_time",
+        "entity_action": {
+            "type": "origins:set_fall_distance",
+            "fall_distance": 0
+        },
+        "interval": 1,
+        "condition": {
+            "type": "origins:resource",
+            "resource": "axolotl:play_dead_is_active",
+            "comparison": "==",
+            "compare_to": 1
+        }
     }
 }
