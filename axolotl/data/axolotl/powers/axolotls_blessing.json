@@ -1,0 +1,43 @@
+{
+    "name": "Axolotl's Blessing",
+    "description": "When you are in combat other player's around you will gain regeneration.",
+    "type": "origins:multiple",
+    "support": {
+        "type": "origins:toggle",
+        "active_by_default": false,
+        "key": {
+            "key": "key.origins.primary_active",
+            "continuous": false
+        }
+    },
+    "healing": {
+        "type": "origins:target_action_on_hit",
+        "entity_action": {
+            "type": "origins:execute_command",
+            "command": "effect give @a[distance=0.01..10] minecraft:regeneration 3 0"
+        },
+        "cooldown": 0,
+        "hud_render": {
+            "should_render": false
+        },
+        "condition": {
+            "type": "origins:power_active",
+            "power": "axolotl:axolotl's_blessing_support"
+        }
+    },
+    "healing_bar": {
+        "type": "origins:resource",
+        "min": 0,
+        "max": 1,
+        "hud_render": {
+            "should_render": true,
+            "sprite_location": "origins:textures/gui/community/huang/resource_bar_01.png",
+            "bar_index": 4,
+            "condition": {
+                "type": "origins:power_active",
+                "power": "axolotl:axolotl's_blessing_support"
+            }
+        },
+        "start_value": 1
+    }
+}

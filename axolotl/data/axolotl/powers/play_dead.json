@@ -235,7 +235,7 @@
             "compare_to": 1
         },
         "modifier": {
-            "name": "Extra damage when submerged",
+            "name": "No Damage When Active",
             "operation": "multiply_total",
             "value": -1
         }
