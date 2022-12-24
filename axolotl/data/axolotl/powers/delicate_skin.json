@@ -1,0 +1,12 @@
+{
+  "type": "origins:modify_damage_taken",
+  "damage_condition": {
+    "type": "origins:fire"
+  },
+  "modifier": {
+    "operation": "addition",
+    "value": 3
+  },
+  "name": "Delicate Skin",
+  "description": "Because of your delicate skin, you take more fire damage."
+}

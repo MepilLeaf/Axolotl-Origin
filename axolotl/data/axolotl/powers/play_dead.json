@@ -39,8 +39,8 @@
         "condition": {
             "type": "origins:resource",
             "resource": "axolotl:play_dead_cooldown",
-            "comparison": ">",
-            "compare_to": 30
+            "comparison": "==",
+            "compare_to": 33
         }
     },
     "is_active_false": {
@@ -145,20 +145,6 @@
             "resource": "axolotl:play_dead_cooldown",
             "comparison": "==",
             "compare_to": 24
-        }
-    },
-    "no_movement_when_land": {
-        "type": "origins:action_on_land",
-        "entity_action": {
-            "type": "origins:execute_command",
-            "command": "scale set pehkui:motion 0.00001 @s",
-            "permission_level": 4
-        },
-        "condition": {
-            "type": "origins:resource",
-            "resource": "axolotl:play_dead_is_active",
-            "comparison": "==",
-            "compare_to": 1
         }
     },
     "no_movement_when_on_ground": {

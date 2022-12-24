@@ -1,6 +1,6 @@
 {
     "name": "Axolotl's Blessing",
-    "description": "When you are in combat other player's around you will gain regeneration.",
+    "description": "When you are in combat, you and all other players nearby will gain regeneration. You are able to choose to give regeneration to only yourself.",
     "type": "origins:multiple",
     "support": {
         "type": "origins:toggle",
@@ -10,14 +10,14 @@
             "continuous": false
         }
     },
-    "healing": {
+    "healing_others": {
         "type": "origins:self_action_on_hit",
         "entity_action": {
             "type": "origins:and",
             "actions": [
                 {
                     "type": "origins:execute_command",
-                    "command": "effect give @a[distance=0.01..50] minecraft:regeneration 4 0"
+                    "command": "effect give @a[distance=0..50] minecraft:regeneration 4 0 true"
                 },
                 {
                     "type": "origins:play_sound",
@@ -34,7 +34,7 @@
             "power": "axolotl:axolotl_blessing_support"
         }
     },
-    "healing_bar": {
+    "heal_others_indicator": {
         "type": "origins:resource",
         "min": 0,
         "max": 1,
@@ -48,5 +48,46 @@
             }
         },
         "start_value": 1
+    },
+    "heal_only_self_indicator": {
+        "type": "origins:resource",
+        "min": 0,
+        "max": 1,
+        "hud_render": {
+            "should_render": true,
+            "sprite_location": "origins:textures/gui/community/spiderkolo/resource_bar_02.png",
+            "bar_index": 1,
+            "condition": {
+                "type": "origins:power_active",
+                "power": "axolotl:axolotl_blessing_support",
+                "inverted": true
+            }
+        },
+        "start_value": 1
+    },
+    "healing_self": {
+        "type": "origins:self_action_on_hit",
+        "entity_action": {
+            "type": "origins:and",
+            "actions": [
+                {
+                    "type": "origins:execute_command",
+                    "command": "effect give @s minecraft:regeneration 4 0 true"
+                },
+                {
+                    "type": "origins:play_sound",
+                    "sound": "minecraft:block.amethyst_block.break"
+                }
+            ]
+        },
+        "cooldown": 0,
+        "hud_render": {
+            "should_render": false
+        },
+        "condition": {
+            "type": "origins:power_active",
+            "power": "axolotl:axolotl_blessing_support",
+            "inverted": true
+        }
     }
 }
