@@ -6,7 +6,7 @@
         "type": "origins:toggle",
         "active_by_default": false,
         "key": {
-            "key": "key.origins.secondary_active",
+            "key": "key.origins.primary_active",
             "continuous": false
         }
     },
@@ -55,8 +55,8 @@
         "max": 1,
         "hud_render": {
             "should_render": true,
-            "sprite_location": "origins:textures/gui/community/spiderkolo/resource_bar_02.png",
-            "bar_index": 1,
+            "sprite_location": "origins:textures/gui/community/huang/resource_bar_01.png",
+            "bar_index": 4,
             "condition": {
                 "type": "origins:power_active",
                 "power": "axolotl:axolotl_blessing_support",
@@ -88,6 +88,37 @@
             "type": "origins:power_active",
             "power": "axolotl:axolotl_blessing_support",
             "inverted": true
+        }
+    },
+    "self_heal_burst": {
+        "type": "origins:self_action_on_kill",
+        "entity_action": {
+            "type": "origins:execute_command",
+            "command": "effect give @s minecraft:regeneration 3 1 true"
+        },
+        "cooldown": 0,
+        "hud_render": {
+            "should_render": false
+        },
+        "condition": {
+            "type": "origins:power_active",
+            "power": "axolotl:axolotl_blessing_support",
+            "inverted": true
+        }
+    },
+    "heal_others_burst": {
+        "type": "origins:self_action_on_kill",
+        "entity_action": {
+            "type": "origins:execute_command",
+            "command": "effect give @a[distance=0..50] minecraft:regeneration 3 1 true"
+        },
+        "cooldown": 0,
+        "hud_render": {
+            "should_render": false
+        },
+        "condition": {
+            "type": "origins:power_active",
+            "power": "axolotl:axolotl_blessing_support"
         }
     }
 }
